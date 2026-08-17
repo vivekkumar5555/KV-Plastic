@@ -1,5 +1,7 @@
 import { LegalLayout } from "@/components/LegalLayout";
 
+export const dynamic = "force-dynamic";
+
 export default function CookiePolicyPage() {
   return (
     <LegalLayout title="Cookie Policy" updated="August 12, 2026">

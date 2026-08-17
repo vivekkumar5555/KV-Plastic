@@ -1,5 +1,7 @@
 import { LegalLayout } from "@/components/LegalLayout";
 
+export const dynamic = "force-dynamic";
+
 export default function PrivacyPolicyPage() {
   return (
     <LegalLayout title="Privacy Policy" updated="August 12, 2026">

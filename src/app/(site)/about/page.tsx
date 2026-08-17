@@ -7,6 +7,8 @@ import { LinkButton } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGrid, StaggerItem } from "@/components/motion/StaggerGrid";
 
+export const dynamic = "force-dynamic";
+
 const values = [
   {
     icon: IconBulb,

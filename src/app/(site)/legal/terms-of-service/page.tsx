@@ -1,5 +1,7 @@
 import { LegalLayout } from "@/components/LegalLayout";
 
+export const dynamic = "force-dynamic";
+
 export default function TermsOfServicePage() {
   return (
     <LegalLayout title="Terms of Service" updated="August 12, 2026">
