@@ -16,8 +16,12 @@ import { getSiteSettings } from "@/lib/queries";
 
 export const dynamic = "force-dynamic";
 
+const iconChipTones = ["primary", "accent", "yellow", "pink"] as const;
+
 export default async function ContactPage() {
   const settings = await getSiteSettings();
+
+  const primaryPhone = settings.phone.split(",")[0]?.trim() ?? settings.phone;
 
   const info = [
     { icon: IconMapPin, label: "Address", value: settings.address },
@@ -25,7 +29,7 @@ export default async function ContactPage() {
       icon: IconPhone,
       label: "Phone",
       value: settings.phone,
-      href: `tel:${settings.phone.replace(/[^\d+]/g, "")}`,
+      href: `tel:${primaryPhone.replace(/[^\d+]/g, "")}`,
     },
     {
       icon: IconMail,
@@ -48,10 +52,13 @@ export default async function ContactPage() {
         <Container className="grid gap-10 md:grid-cols-2">
           <div>
             <StaggerGrid className="space-y-4">
-              {info.map((item) => (
+              {info.map((item, i) => (
                 <StaggerItem key={item.label} lift={false}>
                   <Card className="flex items-center gap-4 p-4">
-                    <IconChip icon={<item.icon size={20} stroke={1.75} />} />
+                    <IconChip
+                      icon={<item.icon size={20} stroke={1.75} />}
+                      tone={iconChipTones[i % iconChipTones.length]}
+                    />
                     <div>
                       <div className="text-xs uppercase tracking-wide text-text-secondary">
                         {item.label}
@@ -74,7 +81,7 @@ export default async function ContactPage() {
 
             <Reveal delay={0.2}>
               <a
-                href={`https://wa.me/${settings.phone.replace(/[^\d]/g, "")}`}
+                href={`https://wa.me/${primaryPhone.replace(/[^\d]/g, "")}`}
                 className="mt-4 inline-flex items-center gap-2 rounded-input border-[0.5px] border-border px-4 py-2.5 text-sm font-medium text-primary transition-colors duration-200 hover:border-primary"
               >
                 <IconBrandWhatsapp size={18} stroke={1.75} />

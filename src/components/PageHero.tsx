@@ -18,11 +18,11 @@ export function PageHero({
       <Container>
         <Reveal>
           {eyebrow && (
-            <p className="text-sm font-medium uppercase tracking-wide text-accent">
-              {eyebrow}
+            <p className="inline-flex items-center rounded-full border-[0.5px] border-border bg-white px-3 py-1 text-xs font-semibold tracking-wide text-accent uppercase">
+              [ {eyebrow} ]
             </p>
           )}
-          <h1 className={`text-text ${eyebrow ? "mt-2" : ""}`}>{title}</h1>
+          <h1 className={`text-text ${eyebrow ? "mt-3" : ""}`}>{title}</h1>
           {description && (
             <p className="mt-4 max-w-2xl text-text-secondary">{description}</p>
           )}

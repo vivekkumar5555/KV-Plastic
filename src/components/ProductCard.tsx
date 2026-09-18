@@ -17,6 +17,13 @@ type Product = {
   imageUrl?: string | null;
 };
 
+const tileTints = ["bg-bg-alt", "bg-yellow-tint", "bg-pink-tint", "bg-primary-tint"];
+
+function tintFor(slug: string) {
+  const sum = slug.split("").reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+  return tileTints[sum % tileTints.length];
+}
+
 export function ProductCard({ product }: { product: Product }) {
   return (
     <motion.div
@@ -25,7 +32,9 @@ export function ProductCard({ product }: { product: Product }) {
       className="h-full"
     >
       <Card className="group flex h-full flex-col p-0 overflow-hidden transition-colors duration-200 hover:border-primary">
-        <div className="relative flex h-40 items-center justify-center overflow-hidden bg-bg-alt text-text-secondary">
+        <div
+          className={`relative flex h-40 items-center justify-center overflow-hidden text-text-secondary ${tintFor(product.slug)}`}
+        >
           {product.imageUrl ? (
             <Image
               src={product.imageUrl}

@@ -78,10 +78,11 @@ async function main() {
       id: 1,
       companyName: "KV Plastic",
       email: "hello@kvplastic.com",
-      phone: "+91 98765 43210",
+      phone: "+91 98557 25512, +91 62800 63712",
       address: "42 Industrial Estate Road, Sector 7, Your City, 000000",
       hours: "Mon–Sat, 9:00 AM – 6:00 PM",
-      footerNote: "Custom plastic products manufacturing for industrial, consumer, and OEM clients.",
+      footerNote:
+        "Product- and service-based manufacturing company specializing in custom plastic and rubber products.",
     },
   });
 

@@ -9,6 +9,8 @@ import { StaggerGrid, StaggerItem } from "@/components/motion/StaggerGrid";
 
 export const dynamic = "force-dynamic";
 
+const iconChipTones = ["primary", "accent", "yellow"] as const;
+
 const values = [
   {
     icon: IconBulb,
@@ -41,17 +43,20 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About Us"
-        title="Two Decades of Precision Plastic Manufacturing"
-        description="KV Plastic was founded to give industrial and OEM clients a manufacturing partner they don't have to double-check. That's still the goal today."
+        title="Plastic & Rubber Manufacturing, Built to Your Spec"
+        description="KV Plastic is a product- and service-based manufacturing company specializing in plastic and rubber products. We manufacture quality products while also providing customized manufacturing solutions based on our customers' specific requirements."
       />
 
       <section className="py-16">
         <Container>
           <StaggerGrid className="grid gap-6 md:grid-cols-3">
-            {values.map((v) => (
+            {values.map((v, i) => (
               <StaggerItem key={v.title}>
                 <Card>
-                  <IconChip icon={<v.icon size={22} stroke={1.75} />} />
+                  <IconChip
+                    icon={<v.icon size={22} stroke={1.75} />}
+                    tone={iconChipTones[i % iconChipTones.length]}
+                  />
                   <h3 className="mt-4 text-text">{v.title}</h3>
                   <p className="mt-2 text-sm text-text-secondary">
                     {v.description}

@@ -47,7 +47,11 @@ export default async function PortfolioPage() {
                       </p>
                       <div className="mt-auto flex items-center gap-2 pt-6 text-sm font-medium text-primary">
                         {cs.metric}
-                        <IconArrowRight size={16} stroke={1.75} />
+                        <IconArrowRight
+                          size={16}
+                          stroke={1.75}
+                          className="transition-transform duration-200 ease-out group-hover:translate-x-1"
+                        />
                       </div>
                     </div>
                   </Card>

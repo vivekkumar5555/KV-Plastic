@@ -3,6 +3,8 @@ import { ReactNode } from "react";
 const tones = {
   primary: "bg-primary-tint text-primary",
   accent: "bg-accent-tint text-accent",
+  yellow: "bg-yellow-tint text-ink",
+  pink: "bg-pink-tint text-accent",
 } as const;
 
 type Tone = keyof typeof tones;

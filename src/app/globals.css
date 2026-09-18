@@ -19,6 +19,25 @@
   /* Feedback */
   --color-success: #3b6d11;
   --color-error: #a32d2d;
+
+  /* Editorial accents (public site only — see .site overrides below) */
+  --color-ink: #14110f;
+  --color-yellow: #e4ff6e;
+  --color-yellow-tint: #f9ffe0;
+  --color-pink: #ffd3e4;
+  --color-pink-tint: #fff1f6;
+}
+
+/*
+ * The public marketing site (everything under the `.site` wrapper in
+ * src/app/(site)/layout.tsx) gets a warmer, editorial palette. The admin
+ * dashboard renders outside `.site` and keeps the :root defaults above.
+ */
+.site {
+  --color-bg: #f8f3e6;
+  --color-bg-alt: #cfe9f7;
+  --color-border: #e6dcc7;
+  --color-text-secondary: #66604f;
 }
 
 @theme inline {
@@ -37,10 +56,18 @@
   --color-success: var(--color-success);
   --color-error: var(--color-error);
 
+  --color-ink: var(--color-ink);
+  --color-yellow: var(--color-yellow);
+  --color-yellow-tint: var(--color-yellow-tint);
+  --color-pink: var(--color-pink);
+  --color-pink-tint: var(--color-pink-tint);
+
   --font-sans: var(--font-inter);
+  --font-display: var(--font-fraunces);
+  --font-hand: var(--font-caveat);
 
   --radius-input: 8px;
-  --radius-card: 12px;
+  --radius-card: 16px;
 
   --animate-marquee: marquee 28s linear infinite;
 }
@@ -127,5 +154,39 @@ h3 {
 @media (min-width: 768px) {
   h3 {
     font-size: 18px;
+  }
+}
+
+/*
+ * Editorial heading treatment for the public site only. Scoped under
+ * `.site` (see src/app/(site)/layout.tsx) so the admin dashboard keeps
+ * the compact defaults above.
+ */
+.site h1,
+.site h2 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.site h1 {
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1.05;
+}
+
+.site h2 {
+  font-size: clamp(28px, 3.4vw, 42px);
+  line-height: 1.15;
+}
+
+.site h3 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+@media (min-width: 768px) {
+  .site h3 {
+    font-size: 20px;
   }
 }

@@ -7,9 +7,11 @@ import { gsap } from "@/lib/gsap";
 export function AnimatedStat({
   value,
   label,
+  numberClassName = "text-primary",
 }: {
   value: string;
   label: string;
+  numberClassName?: string;
 }) {
   const numberRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -52,7 +54,10 @@ export function AnimatedStat({
 
   return (
     <div ref={containerRef} className="text-center">
-      <div className="text-3xl font-medium text-primary" ref={numberRef}>
+      <div
+        className={`font-display text-3xl font-medium ${numberClassName}`}
+        ref={numberRef}
+      >
         {value}
       </div>
       <div className="mt-1 text-sm text-text-secondary">{label}</div>

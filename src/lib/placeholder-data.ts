@@ -7,35 +7,37 @@ export const stats = [
 
 export const capabilities = [
   {
-    title: "Injection Molding",
-    description: "High-volume precision molding for consumer and industrial parts.",
-    href: "/products?process=injection-molding",
+    title: "Horizontal Plastic Injection Molding Machine",
+    description:
+      "For manufacturing various plastic components and products with consistent quality.",
+    href: "/products",
   },
   {
-    title: "Custom Tooling",
-    description: "In-house mold design and fabrication for new product runs.",
-    href: "/products?process=custom-tooling",
+    title: "Vertical Plastic Injection Moulding Machine",
+    description:
+      "Suitable for specialized molding applications, including insert molding and customized plastic components.",
+    href: "/products",
   },
   {
-    title: "Blow Molding",
-    description: "Hollow plastic components — containers, ducting, and housings.",
-    href: "/products?process=blow-molding",
+    title: "Hydraulic Rubber Press Machine",
+    description:
+      "Used for manufacturing molded rubber products and components with controlled pressure and reliable results.",
+    href: "/products",
   },
-  {
-    title: "Extrusion",
-    description: "Continuous profiles, tubing, and sheet stock to spec.",
-    href: "/products?process=extrusion",
-  },
-  {
-    title: "Assembly & Finishing",
-    description: "Ultrasonic welding, printing, and secondary finishing services.",
-    href: "/products?process=assembly-finishing",
-  },
-  {
-    title: "Material Selection",
-    description: "ABS, PP, HDPE, PC, and engineered resin guidance by application.",
-    href: "/products?process=material-selection",
-  },
+];
+
+export const industries = [
+  "Automation & Industrial Machinery",
+  "Automotive & Auto Components",
+  "Electrical & Electronics",
+  "Agriculture & Agricultural Equipment",
+  "Packaging",
+  "Hardware & Engineering",
+  "Construction",
+  "Home & Household Products",
+  "Medical & General Equipment",
+  "Manufacturing & Industrial Applications",
+  "And Many Other Industries",
 ];
 
 export const products = [
