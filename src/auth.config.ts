@@ -1,6 +1,9 @@
 import type { NextAuthConfig } from "next-auth";
 
+const PUBLIC_ADMIN_PATHS = ["/admin/login", "/admin/setup"];
+
 export const authConfig: NextAuthConfig = {
+  trustHost: true,
   pages: {
     signIn: "/admin/login",
   },
@@ -10,8 +13,7 @@ export const authConfig: NextAuthConfig = {
   callbacks: {
     authorized({ auth, request }) {
       const isLoggedIn = !!auth?.user;
-      const isLoginPage = request.nextUrl.pathname === "/admin/login";
-      if (isLoginPage) return true;
+      if (PUBLIC_ADMIN_PATHS.includes(request.nextUrl.pathname)) return true;
       return isLoggedIn;
     },
     jwt({ token, user }) {
