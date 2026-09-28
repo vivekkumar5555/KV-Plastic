@@ -10,7 +10,7 @@ export function Topbar({
   role: string;
 }) {
   return (
-    <header className="flex h-16 items-center justify-between border-b-[0.5px] border-border bg-white px-6">
+    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b-[0.5px] border-border bg-white px-4 md:px-6">
       <div />
       <div className="flex items-center gap-4">
         <Link
