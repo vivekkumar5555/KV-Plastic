@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/Button";
 const inputClass =
   "mt-1 w-full rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none transition-colors duration-200 focus:border-primary";
 
-export function SetupForm() {
+export function SetupForm({ requireKey }: { requireKey: boolean }) {
   const [errorMessage, formAction, isPending] = useActionState(
     bootstrapAdmin,
     undefined,
@@ -15,6 +15,20 @@ export function SetupForm() {
 
   return (
     <form action={formAction} className="space-y-4">
+      {requireKey && (
+        <div>
+          <label className="text-sm text-text-secondary" htmlFor="setupKey">
+            Setup key
+          </label>
+          <input
+            id="setupKey"
+            name="setupKey"
+            type="password"
+            required
+            className={inputClass}
+          />
+        </div>
+      )}
       <div>
         <label className="text-sm text-text-secondary" htmlFor="name">
           Name

@@ -5,11 +5,14 @@ import { prisma } from "@/lib/db";
 import { Card } from "@/components/ui/Card";
 import { LoginForm } from "./LoginForm";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminLoginPage() {
   const session = await auth();
   if (session) redirect("/admin");
 
   const hasUsers = (await prisma.user.count()) > 0;
+  const canSignUp = !hasUsers || !!process.env.ADMIN_SETUP_KEY;
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-bg-alt px-4">
@@ -25,11 +28,11 @@ export default async function AdminLoginPage() {
           <LoginForm />
         </Card>
 
-        {!hasUsers && (
+        {canSignUp && (
           <p className="mt-4 text-center text-sm text-text-secondary">
-            No admin account yet?{" "}
+            {hasUsers ? "Need an admin account?" : "No admin account yet?"}{" "}
             <Link href="/admin/setup" className="text-primary underline">
-              Create one
+              Sign up as admin
             </Link>
           </p>
         )}

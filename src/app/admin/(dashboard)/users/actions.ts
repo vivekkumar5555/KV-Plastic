@@ -24,7 +24,7 @@ export async function createUser(formData: FormData) {
   const session = await requireAdmin();
 
   const name = (formData.get("name") as string).trim();
-  const email = (formData.get("email") as string).trim();
+  const email = (formData.get("email") as string).trim().toLowerCase();
   const password = formData.get("password") as string;
   const role = formData.get("role") as Role;
 
