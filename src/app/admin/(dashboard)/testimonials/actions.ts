@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
-import { saveUploadedFile } from "@/lib/upload";
+import { saveUploadedFile, deleteUploadByUrl } from "@/lib/upload";
 import { logActivity } from "@/lib/activity";
 import { auth } from "@/auth";
 
@@ -47,16 +47,22 @@ export async function updateTestimonial(id: string, formData: FormData) {
       ? await saveUploadedFile(photoFile, "testimonials")
       : undefined;
 
+  const previous = await prisma.testimonial.findUnique({
+    where: { id },
+    select: { photoUrl: true },
+  });
   await prisma.testimonial.update({
     where: { id },
     data: { ...testimonialFields(formData), ...(photoUrl ? { photoUrl } : {}) },
   });
+  if (photoUrl) await deleteUploadByUrl(previous?.photoUrl);
 
   await logActivity(await getActor(), "updated", "testimonial", id);
   redirect("/admin/testimonials");
 }
 
 export async function deleteTestimonial(id: string) {
-  await prisma.testimonial.delete({ where: { id } });
+  const deleted = await prisma.testimonial.delete({ where: { id } });
+  await deleteUploadByUrl(deleted.photoUrl);
   await logActivity(await getActor(), "deleted", "testimonial", id);
 }

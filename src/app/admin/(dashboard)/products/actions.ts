@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
-import { saveUploadedFile } from "@/lib/upload";
+import { saveUploadedFile, deleteUploadByUrl } from "@/lib/upload";
 import { logActivity } from "@/lib/activity";
 import { auth } from "@/auth";
 
@@ -54,16 +54,22 @@ export async function updateProduct(id: string, formData: FormData) {
       ? await saveUploadedFile(imageFile, "products")
       : undefined;
 
+  const previous = await prisma.product.findUnique({
+    where: { id },
+    select: { imageUrl: true },
+  });
   await prisma.product.update({
     where: { id },
     data: { ...productFields(formData), ...(imageUrl ? { imageUrl } : {}) },
   });
+  if (imageUrl) await deleteUploadByUrl(previous?.imageUrl);
 
   await logActivity(await getActor(), "updated", "product", id);
   redirect("/admin/products");
 }
 
 export async function deleteProduct(id: string) {
-  await prisma.product.delete({ where: { id } });
+  const deleted = await prisma.product.delete({ where: { id } });
+  await deleteUploadByUrl(deleted.imageUrl);
   await logActivity(await getActor(), "deleted", "product", id);
 }

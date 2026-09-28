@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
-import { saveUploadedFile } from "@/lib/upload";
+import { saveUploadedFile, deleteUploadByUrl } from "@/lib/upload";
 import { logActivity } from "@/lib/activity";
 import { auth } from "@/auth";
 
@@ -50,16 +50,22 @@ export async function updatePortfolio(id: string, formData: FormData) {
       ? await saveUploadedFile(imageFile, "portfolio")
       : undefined;
 
+  const previous = await prisma.portfolio.findUnique({
+    where: { id },
+    select: { imageUrl: true },
+  });
   await prisma.portfolio.update({
     where: { id },
     data: { ...portfolioFields(formData), ...(imageUrl ? { imageUrl } : {}) },
   });
+  if (imageUrl) await deleteUploadByUrl(previous?.imageUrl);
 
   await logActivity(await getActor(), "updated", "portfolio item", id);
   redirect("/admin/portfolio");
 }
 
 export async function deletePortfolio(id: string) {
-  await prisma.portfolio.delete({ where: { id } });
+  const deleted = await prisma.portfolio.delete({ where: { id } });
+  await deleteUploadByUrl(deleted.imageUrl);
   await logActivity(await getActor(), "deleted", "portfolio item", id);
 }

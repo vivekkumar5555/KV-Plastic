@@ -122,6 +122,16 @@ model SiteSettings {
   footerNote   String?
 }
 
+model Upload {
+  id          String   @id @default(cuid())
+  folder      String
+  filename    String
+  contentType String
+  size        Int
+  data        Bytes
+  createdAt   DateTime @default(now())
+}
+
 model ActivityLog {
   id        String   @id @default(cuid())
   actor     String

@@ -1,16 +1,28 @@
-import { writeFile, mkdir } from "fs/promises";
-import path from "path";
+import { prisma } from "@/lib/db";
 
+const UPLOAD_URL_PREFIX = "/api/uploads/";
+
+// Stored in Postgres because Render's filesystem is ephemeral and
+// `next start` doesn't serve files added to public/ after the build.
 export async function saveUploadedFile(
   file: File,
-  subdir: string,
+  folder: string,
 ): Promise<string> {
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
-  const ext = path.extname(file.name) || "";
-  const filename = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}${ext}`;
-  const uploadDir = path.join(process.cwd(), "public", "uploads", subdir);
-  await mkdir(uploadDir, { recursive: true });
-  await writeFile(path.join(uploadDir, filename), buffer);
-  return `/uploads/${subdir}/${filename}`;
+  const data = Buffer.from(await file.arrayBuffer());
+  const upload = await prisma.upload.create({
+    data: {
+      folder,
+      filename: file.name.slice(0, 255) || "file",
+      contentType: file.type || "application/octet-stream",
+      size: data.length,
+      data,
+    },
+  });
+  return `${UPLOAD_URL_PREFIX}${upload.id}`;
+}
+
+export async function deleteUploadByUrl(url: string | null | undefined) {
+  if (!url?.startsWith(UPLOAD_URL_PREFIX)) return;
+  const id = url.slice(UPLOAD_URL_PREFIX.length);
+  await prisma.upload.deleteMany({ where: { id } });
 }
