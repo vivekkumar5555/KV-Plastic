@@ -40,6 +40,17 @@ export function LinkButton({
   href,
   ...props
 }: LinkButtonProps) {
+  // File downloads must bypass client-side routing and prefetching.
+  if (props.download !== undefined) {
+    return (
+      <a
+        href={href}
+        className={`${base} ${variants[variant]} ${className}`}
+        {...props}
+      />
+    );
+  }
+
   return (
     <Link
       href={href}

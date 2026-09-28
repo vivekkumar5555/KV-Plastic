@@ -73,7 +73,11 @@ export default async function ProductDetailPage({
                 <LinkButton href={`/request-quote?product=${product.slug}`}>
                   Request Quote for This Product
                 </LinkButton>
-                <LinkButton href="#" variant="secondary">
+                <LinkButton
+                  href={`/products/${product.slug}/spec-sheet`}
+                  download={`${product.slug}-spec-sheet.pdf`}
+                  variant="secondary"
+                >
                   <IconFileDownload size={18} stroke={1.75} />
                   Download Spec Sheet
                 </LinkButton>
