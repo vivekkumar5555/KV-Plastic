@@ -14,8 +14,15 @@ function str(formData: FormData, key: string) {
   return (formData.get(key) as string | null)?.trim() ?? "";
 }
 
+function parsePublishAt(formData: FormData) {
+  const raw = str(formData, "publishAt");
+  if (!raw) return null;
+  const offsetMinutes = Number(str(formData, "publishAtTzOffset")) || 0;
+  const utc = Date.parse(`${raw}:00Z`);
+  return Number.isNaN(utc) ? null : new Date(utc + offsetMinutes * 60_000);
+}
+
 function blogFields(formData: FormData) {
-  const publishAtRaw = str(formData, "publishAt");
   return {
     slug: str(formData, "slug"),
     title: str(formData, "title"),
@@ -25,7 +32,7 @@ function blogFields(formData: FormData) {
     metaTitle: str(formData, "metaTitle") || null,
     metaDescription: str(formData, "metaDescription") || null,
     published: formData.get("published") === "on",
-    publishAt: publishAtRaw ? new Date(publishAtRaw) : null,
+    publishAt: parsePublishAt(formData),
   };
 }
 

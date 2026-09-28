@@ -1,16 +1,10 @@
 import type { BlogPost } from "@prisma/client";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
+import { LocalDateTimeInput } from "@/components/admin/LocalDateTimeInput";
 
 const inputClass =
   "mt-1 w-full rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none transition-colors duration-200 focus:border-primary";
-
-function toDateTimeLocal(date: Date | null | undefined) {
-  if (!date) return "";
-  const d = new Date(date);
-  d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-  return d.toISOString().slice(0, 16);
-}
 
 export function BlogPostForm({
   post,
@@ -124,11 +118,10 @@ export function BlogPostForm({
           <label className="text-sm text-text-secondary" htmlFor="publishAt">
             Scheduled Publish Date (optional)
           </label>
-          <input
+          <LocalDateTimeInput
             id="publishAt"
             name="publishAt"
-            type="datetime-local"
-            defaultValue={toDateTimeLocal(post?.publishAt)}
+            iso={post?.publishAt?.toISOString()}
             className={inputClass}
           />
           <p className="mt-1 text-xs text-text-secondary">
@@ -139,7 +132,7 @@ export function BlogPostForm({
           <input
             type="checkbox"
             name="published"
-            defaultChecked={post?.published}
+            defaultChecked={post?.published ?? true}
           />
           Published
         </label>
