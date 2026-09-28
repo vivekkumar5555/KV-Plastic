@@ -6,6 +6,10 @@ import { LeadStatusSelect } from "@/components/admin/LeadStatusSelect";
 import { getLeadById } from "@/lib/admin-queries";
 import { updateLeadDetails } from "../actions";
 
+export const dynamic = "force-dynamic";
+
+const IMAGE_EXT = /\.(png|jpe?g|webp|gif|avif)$/i;
+
 export default async function LeadDetailPage({
   params,
 }: {
@@ -27,6 +31,14 @@ export default async function LeadDetailPage({
     ["Material", lead.material],
     ["Quantity", lead.quantity],
     ["Timeline", lead.timeline],
+    [
+      "Received",
+      lead.createdAt.toLocaleString("en-IN", {
+        dateStyle: "medium",
+        timeStyle: "short",
+        timeZone: "Asia/Kolkata",
+      }),
+    ],
   ];
 
   const action = updateLeadDetails.bind(null, lead.id);
@@ -54,31 +66,64 @@ export default async function LeadDetailPage({
             <dt className="text-xs uppercase tracking-wide text-text-secondary">
               Customer Notes
             </dt>
-            <dd className="mt-1 text-sm text-text">{lead.notes}</dd>
+            <dd className="mt-1 whitespace-pre-wrap wrap-break-word text-sm text-text">
+              {lead.notes}
+            </dd>
           </div>
         )}
       </Card>
 
-      {files.length > 0 && (
-        <Card className="mt-6">
-          <h2 className="text-text">Uploaded Files</h2>
-          <ul className="mt-3 space-y-2">
-            {files.map((f) => (
-              <li key={f.url}>
-                <a
-                  href={f.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 text-sm text-primary hover:underline"
+      <Card className="mt-6">
+        <h2 className="text-text">Uploaded Files</h2>
+        {files.length === 0 ? (
+          <p className="mt-3 text-sm text-text-secondary">
+            No files were attached to this request.
+          </p>
+        ) : (
+          <ul className="mt-4 grid gap-4 sm:grid-cols-2">
+            {files.map((f) => {
+              const stored = f.url.startsWith("/api/uploads/");
+              const isImage = IMAGE_EXT.test(f.name);
+              return (
+                <li
+                  key={f.url}
+                  className="overflow-hidden rounded-input border-[0.5px] border-border"
                 >
-                  <IconFile size={16} stroke={1.75} />
-                  {f.name}
-                </a>
-              </li>
-            ))}
+                  {stored && isImage && (
+                    <a href={f.url} target="_blank" rel="noreferrer">
+                      {/* eslint-disable-next-line @next/next/no-img-element -- auth-protected file, not optimizable */}
+                      <img
+                        src={f.url}
+                        alt={f.name}
+                        loading="lazy"
+                        className="h-48 w-full bg-bg-alt object-contain"
+                      />
+                    </a>
+                  )}
+                  <div className="flex items-center gap-2 px-3 py-2 text-sm">
+                    <IconFile size={16} stroke={1.75} className="shrink-0 text-text-secondary" />
+                    {stored ? (
+                      <a
+                        href={f.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="min-w-0 break-all text-primary hover:underline"
+                      >
+                        {f.name}
+                      </a>
+                    ) : (
+                      <span className="min-w-0 wrap-break-word text-text-secondary">
+                        {f.name} — no longer available (uploaded before file
+                        storage was fixed)
+                      </span>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
           </ul>
-        </Card>
-      )}
+        )}
+      </Card>
 
       <Card className="mt-6">
         <h2 className="text-text">Internal Notes</h2>

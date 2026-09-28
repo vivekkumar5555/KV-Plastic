@@ -88,8 +88,15 @@ export default async function ContactPage() {
                 Chat on WhatsApp
               </a>
 
-              <div className="mt-6 flex h-56 items-center justify-center rounded-card border-[0.5px] border-border bg-bg-alt text-sm text-text-secondary">
-                Map embed placeholder
+              <div className="mt-6 h-56 overflow-hidden rounded-card border-[0.5px] border-border bg-bg-alt">
+                <iframe
+                  title="Map of India"
+                  src="https://maps.google.com/maps?q=India&z=4&output=embed"
+                  className="h-full w-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
               </div>
             </Reveal>
           </div>

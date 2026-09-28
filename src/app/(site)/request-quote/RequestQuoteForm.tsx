@@ -238,7 +238,7 @@ export function RequestQuoteForm() {
                   Click to upload drawings, CAD, or images
                 </span>
                 <span className="text-xs text-text-secondary">
-                  PDF, DWG, STEP, PNG, JPG — up to 25MB each
+                  PDF, DWG, STEP, PNG, JPG — up to 8MB in total
                 </span>
                 <input
                   id="file-upload"
@@ -342,6 +342,7 @@ export function RequestQuoteForm() {
             </Button>
             {step < steps.length - 1 ? (
               <Button
+                key="next"
                 type="button"
                 onClick={() => setStep((s) => Math.min(steps.length - 1, s + 1))}
                 disabled={step === 0 && (!form.name || !form.email)}
@@ -349,7 +350,7 @@ export function RequestQuoteForm() {
                 Next
               </Button>
             ) : (
-              <Button type="submit" disabled={submitting}>
+              <Button key="submit" type="submit" disabled={submitting}>
                 {submitting ? "Submitting…" : "Submit Request"}
               </Button>
             )}
