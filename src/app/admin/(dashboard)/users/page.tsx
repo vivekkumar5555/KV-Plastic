@@ -22,14 +22,14 @@ export default async function AdminUsersPage() {
         <LinkButton href="/admin/users/new">Invite User</LinkButton>
       </div>
 
-      <Card className="mt-6 overflow-x-auto p-0">
+      <Card className="mt-6 overflow-x-auto p-0 max-sm:p-0!">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b-[0.5px] border-border text-left text-xs uppercase tracking-wide text-text-secondary">
-              <th className="px-6 py-3 font-medium">Name</th>
-              <th className="px-6 py-3 font-medium">Email</th>
-              <th className="px-6 py-3 font-medium">Role</th>
-              <th className="px-6 py-3 font-medium"></th>
+              <th className="px-4 py-3 sm:px-6 font-medium">Name</th>
+              <th className="hidden sm:table-cell px-4 py-3 sm:px-6 font-medium">Email</th>
+              <th className="px-4 py-3 sm:px-6 font-medium">Role</th>
+              <th className="px-4 py-3 sm:px-6 font-medium"></th>
             </tr>
           </thead>
           <tbody>
@@ -37,17 +37,18 @@ export default async function AdminUsersPage() {
               const isSelf = u.id === session.user.id;
               return (
                 <tr key={u.id} className="border-b-[0.5px] border-border last:border-0">
-                  <td className="px-6 py-3 text-text">
+                  <td className="px-4 py-3 sm:px-6 text-text">
                     {u.name}
                     {isSelf && (
                       <span className="ml-2 text-xs text-text-secondary">(you)</span>
                     )}
+                    <div className="text-xs text-text-secondary sm:hidden">{u.email}</div>
                   </td>
-                  <td className="px-6 py-3 text-text-secondary">{u.email}</td>
-                  <td className="px-6 py-3">
+                  <td className="hidden sm:table-cell px-4 py-3 sm:px-6 text-text-secondary">{u.email}</td>
+                  <td className="px-4 py-3 sm:px-6">
                     <UserRoleSelect id={u.id} role={u.role} disabled={isSelf} />
                   </td>
-                  <td className="px-6 py-3">
+                  <td className="px-4 py-3 sm:px-6">
                     <div className="flex justify-end">
                       {!isSelf && (
                         <DeleteButton onDelete={deleteUser.bind(null, u.id)} />

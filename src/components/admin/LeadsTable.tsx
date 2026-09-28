@@ -87,7 +87,7 @@ export function LeadsTable({ leads }: { leads: RfqSubmission[] }) {
   return (
     <div>
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
@@ -105,7 +105,7 @@ export function LeadsTable({ leads }: { leads: RfqSubmission[] }) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search name, email, company"
-            className="w-64 rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none focus:border-primary"
+            className="w-full rounded-input sm:w-64 border-[0.5px] border-border px-3 py-2 text-sm outline-none focus:border-primary"
           />
         </div>
         <Button type="button" variant="secondary" onClick={exportCsv}>
@@ -117,12 +117,12 @@ export function LeadsTable({ leads }: { leads: RfqSubmission[] }) {
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b-[0.5px] border-border text-left text-xs uppercase tracking-wide text-text-secondary">
-              <th className="px-6 py-3 font-medium">Name</th>
-              <th className="px-6 py-3 font-medium">Phone</th>
-              <th className="px-6 py-3 font-medium">Company</th>
-              <th className="px-6 py-3 font-medium">Product</th>
-              <th className="px-6 py-3 font-medium">Status</th>
-              <th className="px-6 py-3 font-medium">Received</th>
+              <th className="px-4 py-3 sm:px-6 font-medium">Name</th>
+              <th className="hidden sm:table-cell px-4 py-3 sm:px-6 font-medium">Phone</th>
+              <th className="hidden sm:table-cell px-4 py-3 sm:px-6 font-medium">Company</th>
+              <th className="hidden sm:table-cell px-4 py-3 sm:px-6 font-medium">Product</th>
+              <th className="px-4 py-3 sm:px-6 font-medium">Status</th>
+              <th className="hidden sm:table-cell px-4 py-3 sm:px-6 font-medium">Received</th>
             </tr>
           </thead>
           <tbody>
@@ -131,7 +131,7 @@ export function LeadsTable({ leads }: { leads: RfqSubmission[] }) {
                 key={lead.id}
                 className="border-b-[0.5px] border-border last:border-0 hover:bg-bg-alt"
               >
-                <td className="px-6 py-3">
+                <td className="px-4 py-3 sm:px-6">
                   <Link
                     href={`/admin/leads/${lead.id}`}
                     className="font-medium text-primary hover:underline"
@@ -139,29 +139,39 @@ export function LeadsTable({ leads }: { leads: RfqSubmission[] }) {
                     {lead.name}
                   </Link>
                   <div className="text-xs text-text-secondary">{lead.email}</div>
+                  <div className="mt-1 text-xs text-text-secondary sm:hidden">
+                    {[
+                      lead.phone,
+                      lead.company,
+                      lead.product,
+                      new Date(lead.createdAt).toLocaleDateString("en-US"),
+                    ]
+                      .filter(Boolean)
+                      .join(" · ")}
+                  </div>
                 </td>
-                <td className="px-6 py-3 text-text-secondary">
+                <td className="hidden sm:table-cell px-4 py-3 sm:px-6 text-text-secondary">
                   {lead.phone ?? "—"}
                 </td>
-                <td className="px-6 py-3 text-text-secondary">
+                <td className="hidden sm:table-cell px-4 py-3 sm:px-6 text-text-secondary">
                   {lead.company ?? "—"}
                 </td>
-                <td className="px-6 py-3 text-text-secondary">
+                <td className="hidden sm:table-cell px-4 py-3 sm:px-6 text-text-secondary">
                   {lead.product ?? "—"}
                 </td>
-                <td className="px-6 py-3">
+                <td className="px-4 py-3 sm:px-6">
                   <Badge tone={STATUS_TONES[lead.status]}>
                     {STATUS_LABELS[lead.status]}
                   </Badge>
                 </td>
-                <td className="px-6 py-3 text-text-secondary">
+                <td className="hidden sm:table-cell px-4 py-3 sm:px-6 text-text-secondary">
                   {new Date(lead.createdAt).toLocaleDateString("en-US")}
                 </td>
               </tr>
             ))}
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={6} className="px-6 py-8 text-center text-text-secondary">
+                <td colSpan={6} className="px-4 py-8 sm:px-6 text-center text-text-secondary">
                   No leads match your filters.
                 </td>
               </tr>

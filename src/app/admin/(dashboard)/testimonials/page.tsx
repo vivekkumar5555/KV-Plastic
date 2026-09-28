@@ -18,28 +18,28 @@ export default async function AdminTestimonialsPage() {
         <LinkButton href="/admin/testimonials/new">New Testimonial</LinkButton>
       </div>
 
-      <Card className="mt-6 overflow-x-auto p-0">
+      <Card className="mt-6 overflow-x-auto p-0 max-sm:p-0!">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b-[0.5px] border-border text-left text-xs uppercase tracking-wide text-text-secondary">
-              <th className="px-6 py-3 font-medium">Name</th>
-              <th className="px-6 py-3 font-medium">Company</th>
-              <th className="px-6 py-3 font-medium">Status</th>
-              <th className="px-6 py-3 font-medium"></th>
+              <th className="px-4 py-3 sm:px-6 font-medium">Name</th>
+              <th className="hidden sm:table-cell px-4 py-3 sm:px-6 font-medium">Company</th>
+              <th className="px-4 py-3 sm:px-6 font-medium">Status</th>
+              <th className="px-4 py-3 sm:px-6 font-medium"></th>
             </tr>
           </thead>
           <tbody>
             {testimonials.map((t) => (
               <tr key={t.id} className="border-b-[0.5px] border-border last:border-0">
-                <td className="px-6 py-3 text-text">{t.name}</td>
-                <td className="px-6 py-3 text-text-secondary">{t.company}</td>
-                <td className="px-6 py-3">
+                <td className="px-4 py-3 sm:px-6 text-text">{t.name}</td>
+                <td className="hidden sm:table-cell px-4 py-3 sm:px-6 text-text-secondary">{t.company}</td>
+                <td className="px-4 py-3 sm:px-6">
                   <Badge tone={t.published ? "primary" : "accent"}>
                     {t.published ? "Published" : "Draft"}
                   </Badge>
                 </td>
-                <td className="px-6 py-3">
-                  <div className="flex items-center justify-end gap-4">
+                <td className="px-4 py-3 sm:px-6">
+                  <div className="flex items-center justify-end gap-4 whitespace-nowrap">
                     <Link
                       href={`/admin/testimonials/${t.id}`}
                       className="text-sm text-primary hover:underline"
@@ -53,7 +53,7 @@ export default async function AdminTestimonialsPage() {
             ))}
             {testimonials.length === 0 && (
               <tr>
-                <td colSpan={4} className="px-6 py-8 text-center text-text-secondary">
+                <td colSpan={4} className="px-4 py-8 sm:px-6 text-center text-text-secondary">
                   No testimonials yet.
                 </td>
               </tr>
