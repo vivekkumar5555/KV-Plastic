@@ -2,9 +2,7 @@ import { ReactNode } from "react";
 
 const tones = {
   primary: "bg-primary-tint text-primary",
-  accent: "bg-accent-tint text-accent",
-  yellow: "bg-yellow-tint text-ink",
-  pink: "bg-pink-tint text-accent",
+  solid: "bg-primary text-white",
 } as const;
 
 type Tone = keyof typeof tones;
@@ -20,7 +18,7 @@ export function IconChip({
 }) {
   return (
     <div
-      className={`inline-flex h-11 w-11 items-center justify-center rounded-full ${tones[tone]} ${className}`}
+      className={`inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-input ${tones[tone]} ${className}`}
     >
       {icon}
     </div>

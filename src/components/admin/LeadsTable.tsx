@@ -91,7 +91,7 @@ export function LeadsTable({ leads }: { leads: RfqSubmission[] }) {
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none focus:border-primary"
+            className="rounded-input border border-border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-3 focus:ring-primary/15"
           >
             <option value="ALL">All Statuses</option>
             {Object.entries(STATUS_LABELS).map(([value, label]) => (
@@ -105,7 +105,7 @@ export function LeadsTable({ leads }: { leads: RfqSubmission[] }) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search name, email, company"
-            className="w-full rounded-input sm:w-64 border-[0.5px] border-border px-3 py-2 text-sm outline-none focus:border-primary"
+            className="w-full rounded-input sm:w-64 border border-border px-3 py-2 text-sm outline-none focus:border-primary focus:ring-3 focus:ring-primary/15"
           />
         </div>
         <Button type="button" variant="secondary" onClick={exportCsv}>
@@ -113,10 +113,10 @@ export function LeadsTable({ leads }: { leads: RfqSubmission[] }) {
         </Button>
       </div>
 
-      <div className="mt-6 overflow-x-auto rounded-card border-[0.5px] border-border bg-white">
+      <div className="mt-6 overflow-x-auto rounded-card border border-border bg-white">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b-[0.5px] border-border text-left text-xs uppercase tracking-wide text-text-secondary">
+            <tr className="border-b border-border text-left text-xs uppercase tracking-wide text-text-secondary">
               <th className="px-4 py-3 sm:px-6 font-medium">Name</th>
               <th className="hidden sm:table-cell px-4 py-3 sm:px-6 font-medium">Phone</th>
               <th className="hidden sm:table-cell px-4 py-3 sm:px-6 font-medium">Company</th>
@@ -129,7 +129,7 @@ export function LeadsTable({ leads }: { leads: RfqSubmission[] }) {
             {filtered.map((lead) => (
               <tr
                 key={lead.id}
-                className="border-b-[0.5px] border-border last:border-0 hover:bg-bg-alt"
+                className="border-b border-border last:border-0 hover:bg-bg-alt"
               >
                 <td className="px-4 py-3 sm:px-6">
                   <Link

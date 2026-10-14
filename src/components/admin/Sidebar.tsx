@@ -17,6 +17,7 @@ import {
   IconX,
   IconExternalLink,
 } from "@tabler/icons-react";
+import { Logo } from "@/components/ui/Logo";
 
 const links = [
   { href: "/admin", label: "Dashboard", icon: IconLayoutDashboard, exact: true },
@@ -55,9 +56,9 @@ export function Sidebar({ isAdmin }: { isAdmin: boolean }) {
             key={link.href}
             href={link.href}
             onClick={() => setOpen(false)}
-            className={`flex items-center gap-3 rounded-input px-3 py-2.5 text-sm transition-colors duration-200 ${
+            className={`flex items-center gap-3 rounded-input px-3 py-2.5 text-sm font-medium transition-colors duration-200 ${
               active
-                ? "bg-primary-tint text-primary"
+                ? "bg-primary text-white shadow-sm shadow-primary/20"
                 : "text-text-secondary hover:bg-bg-alt hover:text-text"
             }`}
           >
@@ -70,15 +71,15 @@ export function Sidebar({ isAdmin }: { isAdmin: boolean }) {
   );
 
   const brand = (
-    <Link href="/admin" className="text-base font-medium text-text">
-      KV <span className="text-primary">Plastic</span>
+    <Link href="/admin" aria-label="Admin dashboard">
+      <Logo subtitle="Admin" />
     </Link>
   );
 
   return (
     <>
-      <aside className="hidden w-56 shrink-0 border-r-[0.5px] border-border bg-white md:block">
-        <div className="flex h-16 items-center border-b-[0.5px] border-border px-6">
+      <aside className="hidden w-60 shrink-0 border-r border-border bg-white md:block">
+        <div className="flex h-16 items-center border-b border-border px-5">
           {brand}
         </div>
         {nav}
@@ -109,7 +110,7 @@ export function Sidebar({ isAdmin }: { isAdmin: boolean }) {
             open ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          <div className="flex h-16 items-center justify-between border-b-[0.5px] border-border px-4">
+          <div className="flex h-16 items-center justify-between border-b border-border px-4">
             {brand}
             <button
               type="button"

@@ -14,7 +14,7 @@ export default async function AdminActivityPage() {
         {activity.length === 0 ? (
           <p className="p-6 text-sm text-text-secondary">No activity yet.</p>
         ) : (
-          <ul className="divide-y-[0.5px] divide-border">
+          <ul className="divide-y divide-border">
             {activity.map((a) => (
               <li
                 key={a.id}

@@ -16,7 +16,6 @@ import { getSiteSettings } from "@/lib/queries";
 
 export const dynamic = "force-dynamic";
 
-const iconChipTones = ["primary", "accent", "yellow", "pink"] as const;
 
 export default async function ContactPage() {
   const settings = await getSiteSettings();
@@ -48,16 +47,15 @@ export default async function ContactPage() {
         description="General inquiries only — for a manufacturing quote, use the Request a Quote page instead."
       />
 
-      <section className="py-14">
+      <section className="py-14 md:py-20">
         <Container className="grid gap-10 md:grid-cols-2">
           <div>
             <StaggerGrid className="space-y-4">
-              {info.map((item, i) => (
+              {info.map((item) => (
                 <StaggerItem key={item.label} lift={false}>
                   <Card className="flex items-center gap-4 p-4">
                     <IconChip
                       icon={<item.icon size={20} stroke={1.75} />}
-                      tone={iconChipTones[i % iconChipTones.length]}
                     />
                     <div>
                       <div className="text-xs uppercase tracking-wide text-text-secondary">
@@ -82,13 +80,13 @@ export default async function ContactPage() {
             <Reveal delay={0.2}>
               <a
                 href={`https://wa.me/${primaryPhone.replace(/[^\d]/g, "")}`}
-                className="mt-4 inline-flex items-center gap-2 rounded-input border-[0.5px] border-border px-4 py-2.5 text-sm font-medium text-primary transition-colors duration-200 hover:border-primary"
+                className="mt-4 inline-flex items-center gap-2 rounded-input border border-border px-4 py-2.5 text-sm font-medium text-primary transition-colors duration-200 hover:border-primary"
               >
                 <IconBrandWhatsapp size={18} stroke={1.75} />
                 Chat on WhatsApp
               </a>
 
-              <div className="mt-6 h-56 overflow-hidden rounded-card border-[0.5px] border-border bg-bg-alt">
+              <div className="mt-6 h-56 overflow-hidden rounded-card border border-border bg-bg-alt">
                 <iframe
                   title="Map of India"
                   src="https://maps.google.com/maps?q=India&z=4&output=embed"
@@ -112,7 +110,7 @@ export default async function ContactPage() {
                   <input
                     id="name"
                     type="text"
-                    className="mt-1 w-full rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none transition-colors duration-200 focus:border-primary"
+                    className="mt-1 w-full rounded-input border border-border bg-white px-3.5 py-2.5 text-sm outline-none transition-colors duration-200 focus:border-primary focus:ring-3 focus:ring-primary/15"
                   />
                 </div>
                 <div>
@@ -122,7 +120,7 @@ export default async function ContactPage() {
                   <input
                     id="email"
                     type="email"
-                    className="mt-1 w-full rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none transition-colors duration-200 focus:border-primary"
+                    className="mt-1 w-full rounded-input border border-border bg-white px-3.5 py-2.5 text-sm outline-none transition-colors duration-200 focus:border-primary focus:ring-3 focus:ring-primary/15"
                   />
                 </div>
                 <div>
@@ -132,7 +130,7 @@ export default async function ContactPage() {
                   <textarea
                     id="message"
                     rows={5}
-                    className="mt-1 w-full rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none transition-colors duration-200 focus:border-primary"
+                    className="mt-1 w-full rounded-input border border-border bg-white px-3.5 py-2.5 text-sm outline-none transition-colors duration-200 focus:border-primary focus:ring-3 focus:ring-primary/15"
                   />
                 </div>
                 <Button type="submit" className="w-full">

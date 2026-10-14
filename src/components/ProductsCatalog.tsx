@@ -25,7 +25,7 @@ export function ProductsCatalog({ products }: { products: Product[] }) {
   }, [products, category, query]);
 
   return (
-    <section className="py-14">
+    <section className="py-14 md:py-20">
       <Container>
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-wrap gap-2">
@@ -33,10 +33,10 @@ export function ProductsCatalog({ products }: { products: Product[] }) {
               <button
                 key={c}
                 onClick={() => setCategory(c)}
-                className={`rounded-full border-[0.5px] px-4 py-1.5 text-sm transition-colors duration-200 ${
+                className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-200 ${
                   category === c
-                    ? "border-primary bg-primary-tint text-primary"
-                    : "border-border text-text-secondary hover:border-primary hover:text-primary"
+                    ? "border-primary bg-primary text-white"
+                    : "border-border bg-white text-text hover:border-primary hover:text-primary"
                 }`}
               >
                 {c}
@@ -55,7 +55,7 @@ export function ProductsCatalog({ products }: { products: Product[] }) {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search products or materials"
-              className="w-full rounded-input border-[0.5px] border-border py-2 pl-10 pr-3 text-sm outline-none transition-colors duration-200 focus:border-primary"
+              className="w-full rounded-input border border-border bg-white py-2.5 pl-10 pr-3 text-sm outline-none transition-colors duration-200 focus:border-primary focus:ring-3 focus:ring-primary/15"
             />
           </div>
         </div>

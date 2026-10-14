@@ -9,7 +9,6 @@ import { StaggerGrid, StaggerItem } from "@/components/motion/StaggerGrid";
 
 export const dynamic = "force-dynamic";
 
-const iconChipTones = ["primary", "accent", "yellow"] as const;
 
 const values = [
   {
@@ -50,12 +49,11 @@ export default function AboutPage() {
       <section className="py-16">
         <Container>
           <StaggerGrid className="grid gap-6 md:grid-cols-3">
-            {values.map((v, i) => (
+            {values.map((v) => (
               <StaggerItem key={v.title}>
                 <Card>
                   <IconChip
                     icon={<v.icon size={22} stroke={1.75} />}
-                    tone={iconChipTones[i % iconChipTones.length]}
                   />
                   <h3 className="mt-4 text-text">{v.title}</h3>
                   <p className="mt-2 text-sm text-text-secondary">

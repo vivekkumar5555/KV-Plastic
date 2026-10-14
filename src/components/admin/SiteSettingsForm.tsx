@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { updateSiteSettings } from "@/app/admin/(dashboard)/settings/actions";
 
 const inputClass =
-  "mt-1 w-full rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none transition-colors duration-200 focus:border-primary";
+  "mt-1 w-full rounded-input border border-border bg-white px-3.5 py-2.5 text-sm outline-none transition-colors duration-200 focus:border-primary focus:ring-3 focus:ring-primary/15";
 
 export function SiteSettingsForm({ settings }: { settings: SiteSettings }) {
   const [message, formAction, isPending] = useActionState(

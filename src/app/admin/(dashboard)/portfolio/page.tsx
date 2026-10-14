@@ -21,7 +21,7 @@ export default async function AdminPortfolioPage() {
       <Card className="mt-6 overflow-x-auto p-0 max-sm:p-0!">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b-[0.5px] border-border text-left text-xs uppercase tracking-wide text-text-secondary">
+            <tr className="border-b border-border text-left text-xs uppercase tracking-wide text-text-secondary">
               <th className="px-4 py-3 sm:px-6 font-medium">Title</th>
               <th className="hidden sm:table-cell px-4 py-3 sm:px-6 font-medium">Industry</th>
               <th className="px-4 py-3 sm:px-6 font-medium">Status</th>
@@ -30,7 +30,7 @@ export default async function AdminPortfolioPage() {
           </thead>
           <tbody>
             {items.map((item) => (
-              <tr key={item.id} className="border-b-[0.5px] border-border last:border-0">
+              <tr key={item.id} className="border-b border-border last:border-0">
                 <td className="px-4 py-3 sm:px-6 text-text">{item.title}</td>
                 <td className="hidden sm:table-cell px-4 py-3 sm:px-6 text-text-secondary">{item.industry}</td>
                 <td className="px-4 py-3 sm:px-6">

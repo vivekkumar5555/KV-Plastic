@@ -26,14 +26,17 @@ export default async function AdminDashboardPage() {
   return (
     <div>
       <h1 className="text-text">Dashboard</h1>
+      <p className="mt-1 text-sm text-text-secondary">
+        Overview of your website content and enquiries.
+      </p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map((c) => (
-          <Card key={c.label} className="flex items-center gap-4">
-            <IconChip icon={<c.icon size={20} stroke={1.75} />} />
+          <Card key={c.label} className="flex items-center gap-4 p-5">
+            <IconChip icon={<c.icon size={22} stroke={1.75} />} />
             <div>
-              <div className="text-2xl font-medium text-text">{c.value}</div>
-              <div className="text-xs text-text-secondary">{c.label}</div>
+              <div className="font-display text-2xl font-bold text-text">{c.value}</div>
+              <div className="text-xs font-medium text-text-secondary">{c.label}</div>
             </div>
           </Card>
         ))}
@@ -44,7 +47,7 @@ export default async function AdminDashboardPage() {
         {activity.length === 0 ? (
           <p className="mt-4 text-sm text-text-secondary">No activity yet.</p>
         ) : (
-          <ul className="mt-4 divide-y-[0.5px] divide-border">
+          <ul className="mt-4 divide-y divide-border">
             {activity.map((a) => (
               <li
                 key={a.id}
@@ -55,7 +58,11 @@ export default async function AdminDashboardPage() {
                   {a.entity}
                 </span>
                 <span className="text-text-secondary">
-                  {new Date(a.createdAt).toLocaleString("en-US")}
+                  {new Date(a.createdAt).toLocaleString("en-IN", {
+                    dateStyle: "medium",
+                    timeStyle: "short",
+                    timeZone: "Asia/Kolkata",
+                  })}
                 </span>
               </li>
             ))}

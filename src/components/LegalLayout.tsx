@@ -11,7 +11,7 @@ export function LegalLayout({
   children: ReactNode;
 }) {
   return (
-    <section className="py-14">
+    <section className="py-14 md:py-20">
       <Container className="max-w-2xl">
         <h1 className="text-text">{title}</h1>
         <p className="mt-2 text-sm text-text-secondary">

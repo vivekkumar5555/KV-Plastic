@@ -28,7 +28,7 @@ export function UserRoleSelect({
           router.refresh();
         });
       }}
-      className="rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none transition-colors duration-200 focus:border-primary disabled:opacity-50"
+      className="rounded-input border border-border bg-white px-3.5 py-2.5 text-sm outline-none transition-colors duration-200 focus:border-primary disabled:opacity-50"
     >
       <option value="ADMIN">Admin</option>
       <option value="EDITOR">Editor</option>

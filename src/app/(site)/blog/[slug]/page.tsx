@@ -56,7 +56,7 @@ export default async function BlogPostPage({
   const related = await getRelatedBlogPosts(post.slug);
 
   return (
-    <section className="py-14">
+    <section className="py-14 md:py-20">
       <Container className="max-w-2xl">
         <Reveal>
           <Badge tone="primary">{post.category}</Badge>
@@ -80,7 +80,7 @@ export default async function BlogPostPage({
 
         {related.length > 0 && (
           <Reveal delay={0.25}>
-            <div className="mt-16 border-t-[0.5px] border-border pt-8">
+            <div className="mt-16 border-t border-border pt-8">
               <h2 className="text-text">Related Posts</h2>
               <ul className="mt-4 space-y-2">
                 {related.map((p) => (

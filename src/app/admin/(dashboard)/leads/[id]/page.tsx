@@ -62,7 +62,7 @@ export default async function LeadDetailPage({
           ))}
         </dl>
         {lead.notes && (
-          <div className="mt-4 border-t-[0.5px] border-border pt-4">
+          <div className="mt-4 border-t border-border pt-4">
             <dt className="text-xs uppercase tracking-wide text-text-secondary">
               Customer Notes
             </dt>
@@ -87,7 +87,7 @@ export default async function LeadDetailPage({
               return (
                 <li
                   key={f.url}
-                  className="overflow-hidden rounded-input border-[0.5px] border-border"
+                  className="overflow-hidden rounded-input border border-border"
                 >
                   {stored && isImage && (
                     <a href={f.url} target="_blank" rel="noreferrer">
@@ -136,7 +136,7 @@ export default async function LeadDetailPage({
               id="assignedTo"
               name="assignedTo"
               defaultValue={lead.assignedTo ?? ""}
-              className="mt-1 w-full rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none transition-colors duration-200 focus:border-primary"
+              className="mt-1 w-full rounded-input border border-border bg-white px-3.5 py-2.5 text-sm outline-none transition-colors duration-200 focus:border-primary focus:ring-3 focus:ring-primary/15"
             />
           </div>
           <div>
@@ -148,7 +148,7 @@ export default async function LeadDetailPage({
               name="adminNotes"
               rows={4}
               defaultValue={lead.adminNotes ?? ""}
-              className="mt-1 w-full rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none transition-colors duration-200 focus:border-primary"
+              className="mt-1 w-full rounded-input border border-border bg-white px-3.5 py-2.5 text-sm outline-none transition-colors duration-200 focus:border-primary focus:ring-3 focus:ring-primary/15"
             />
           </div>
           <Button type="submit">Save</Button>

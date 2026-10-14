@@ -21,31 +21,31 @@ export default async function PortfolioPage() {
         description="Real projects, real outcomes — a look at how we've solved manufacturing problems for clients across industries."
       />
 
-      <section className="py-14">
+      <section className="py-14 md:py-20">
         <Container>
           <StaggerGrid className="grid gap-6 md:grid-cols-2">
             {caseStudies.map((cs) => (
               <StaggerItem key={cs.slug} className="h-full">
                 <Link href={`/portfolio/${cs.slug}`} className="block h-full">
-                  <Card className="group flex h-full flex-col overflow-hidden p-0 transition-colors duration-200 hover:border-primary">
+                  <Card className="group flex h-full flex-col overflow-hidden p-0 transition-[border-color,box-shadow] duration-300 hover:border-primary hover:shadow-xl hover:shadow-primary/5">
                     {cs.imageUrl && (
-                      <div className="relative h-44 w-full overflow-hidden">
+                      <div className="relative h-56 w-full overflow-hidden">
                         <Image
                           src={cs.imageUrl}
                           alt={cs.title}
                           fill
                           sizes="(min-width: 768px) 50vw, 100vw"
-                          className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                          className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                         />
                       </div>
                     )}
                     <div className="flex flex-1 flex-col p-6">
-                      <Badge tone="primary">{cs.industry}</Badge>
+                      <Badge tone="primary" className="self-start">{cs.industry}</Badge>
                       <h3 className="mt-4 text-text">{cs.title}</h3>
                       <p className="mt-2 text-sm text-text-secondary">
                         {cs.challenge}
                       </p>
-                      <div className="mt-auto flex items-center gap-2 pt-6 text-sm font-medium text-primary">
+                      <div className="mt-auto flex items-center gap-2 pt-6 text-sm font-semibold text-primary">
                         {cs.metric}
                         <IconArrowRight
                           size={16}

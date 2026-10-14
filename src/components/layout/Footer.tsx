@@ -1,12 +1,15 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { LinkButton } from "@/components/ui/Button";
-import { Magnetic } from "@/components/motion/Magnetic";
+import { Logo } from "@/components/ui/Logo";
 import {
   IconArrowRight,
   IconBrandFacebook,
   IconBrandInstagram,
   IconBrandLinkedin,
+  IconMapPin,
+  IconPhone,
+  IconMail,
 } from "@tabler/icons-react";
 import { getSiteSettings } from "@/lib/queries";
 
@@ -41,67 +44,99 @@ export async function Footer() {
   const settings = await getSiteSettings();
 
   const socials = [
-    { href: settings.linkedinUrl || "#", label: "LinkedIn", icon: IconBrandLinkedin },
-    { href: settings.facebookUrl || "#", label: "Facebook", icon: IconBrandFacebook },
-    { href: settings.instagramUrl || "#", label: "Instagram", icon: IconBrandInstagram },
-  ];
+    { href: settings.linkedinUrl, label: "LinkedIn", icon: IconBrandLinkedin },
+    { href: settings.facebookUrl, label: "Facebook", icon: IconBrandFacebook },
+    { href: settings.instagramUrl, label: "Instagram", icon: IconBrandInstagram },
+  ].filter((s) => s.href);
+
+  const contact = [
+    { icon: IconMapPin, value: settings.address },
+    { icon: IconPhone, value: settings.phone },
+    { icon: IconMail, value: settings.email, href: `mailto:${settings.email}` },
+  ].filter((c) => c.value);
 
   return (
     <footer className="bg-ink text-white">
-      <Container className="py-16 md:py-20">
-        <p className="font-display text-3xl italic leading-tight text-white md:text-5xl">
-          Every part starts with a conversation.
-        </p>
+      <div className="bg-primary">
+        <Container className="flex flex-col items-start justify-between gap-6 py-10 md:flex-row md:items-center">
+          <div>
+            <p className="font-display text-2xl font-bold tracking-tight text-white md:text-3xl">
+              Have a part that needs manufacturing?
+            </p>
+            <p className="mt-2 text-white/80">
+              Send us your drawings — we usually reply with a quote within two
+              business days.
+            </p>
+          </div>
+          <LinkButton
+            href="/request-quote"
+            variant="secondary"
+            className="shrink-0 border-white! hover:text-primary-dark!"
+          >
+            Request a Quote
+            <IconArrowRight
+              size={18}
+              stroke={1.75}
+              className="transition-transform duration-200 ease-out group-hover:translate-x-1"
+            />
+          </LinkButton>
+        </Container>
+      </div>
 
-        <div className="mt-10 flex flex-wrap gap-4">
-          <Magnetic strength={0.3}>
-            <LinkButton
-              href="/request-quote"
-              className="!bg-yellow !text-ink hover:!bg-white"
-            >
-              Request a Quote
-              <IconArrowRight
-                size={18}
-                stroke={1.75}
-                className="transition-transform duration-200 ease-out group-hover:translate-x-1"
-              />
-            </LinkButton>
-          </Magnetic>
-        </div>
-      </Container>
-
-      <Container className="border-t border-white/10 py-12">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-          <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="font-display text-lg font-medium text-white">
-              KV <span className="text-yellow">Plastic</span>
+      <Container className="py-14">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="lg:col-span-2">
+            <Link href="/" aria-label="KV Plastic home">
+              <Logo light />
             </Link>
-            <p className="mt-3 text-sm text-white/60">{settings.footerNote}</p>
-            <div className="mt-4 flex gap-3">
-              {socials.map(({ href, label, icon: Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-200 hover:bg-yellow hover:text-ink"
-                >
-                  <Icon size={18} stroke={1.75} />
-                </a>
+            {settings.footerNote && (
+              <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/60">
+                {settings.footerNote}
+              </p>
+            )}
+            <ul className="mt-6 space-y-3">
+              {contact.map(({ icon: Icon, value, href }) => (
+                <li key={value} className="flex items-start gap-3 text-sm text-white/75">
+                  <Icon size={18} stroke={1.75} className="mt-0.5 shrink-0 text-primary-tint" />
+                  {href ? (
+                    <a href={href} className="transition-colors hover:text-white">
+                      {value}
+                    </a>
+                  ) : (
+                    <span>{value}</span>
+                  )}
+                </li>
               ))}
-            </div>
+            </ul>
+            {socials.length > 0 && (
+              <div className="mt-6 flex gap-3">
+                {socials.map(({ href, label, icon: Icon }) => (
+                  <a
+                    key={label}
+                    href={href!}
+                    aria-label={label}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-input bg-white/10 text-white transition-colors duration-200 hover:bg-primary"
+                  >
+                    <Icon size={18} stroke={1.75} />
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
           {sitemap.map((group) => (
             <div key={group.title}>
-              <p className="text-xs font-semibold tracking-wide text-white/50 uppercase">
+              <p className="font-display text-sm font-bold tracking-wide text-white">
                 {group.title}
               </p>
-              <ul className="mt-3 space-y-2">
+              <ul className="mt-4 space-y-2.5">
                 {group.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-white/75 transition-colors duration-200 hover:text-yellow"
+                      className="text-sm text-white/65 transition-colors duration-200 hover:text-white"
                     >
                       {link.label}
                     </Link>
@@ -112,7 +147,7 @@ export async function Footer() {
           ))}
         </div>
 
-        <div className="mt-10 border-t border-white/10 pt-6 text-sm text-white/50">
+        <div className="mt-12 border-t border-white/10 pt-6 text-sm text-white/50">
           © {new Date().getFullYear()} {settings.companyName}. All rights
           reserved.
         </div>

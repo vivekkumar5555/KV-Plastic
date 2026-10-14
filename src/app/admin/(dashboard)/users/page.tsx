@@ -25,7 +25,7 @@ export default async function AdminUsersPage() {
       <Card className="mt-6 overflow-x-auto p-0 max-sm:p-0!">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b-[0.5px] border-border text-left text-xs uppercase tracking-wide text-text-secondary">
+            <tr className="border-b border-border text-left text-xs uppercase tracking-wide text-text-secondary">
               <th className="px-4 py-3 sm:px-6 font-medium">Name</th>
               <th className="hidden sm:table-cell px-4 py-3 sm:px-6 font-medium">Email</th>
               <th className="px-4 py-3 sm:px-6 font-medium">Role</th>
@@ -36,7 +36,7 @@ export default async function AdminUsersPage() {
             {users.map((u) => {
               const isSelf = u.id === session.user.id;
               return (
-                <tr key={u.id} className="border-b-[0.5px] border-border last:border-0">
+                <tr key={u.id} className="border-b border-border last:border-0">
                   <td className="px-4 py-3 sm:px-6 text-text">
                     {u.name}
                     {isSelf && (

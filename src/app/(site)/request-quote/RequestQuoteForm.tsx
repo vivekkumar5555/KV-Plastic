@@ -127,7 +127,7 @@ export function RequestQuoteForm() {
                   required
                   value={form.name}
                   onChange={(e) => update("name", e.target.value)}
-                  className="mt-1 w-full rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none focus:border-primary"
+                  className="mt-1 w-full rounded-input border border-border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-3 focus:ring-primary/15"
                 />
               </div>
               <div>
@@ -140,7 +140,7 @@ export function RequestQuoteForm() {
                   required
                   value={form.email}
                   onChange={(e) => update("email", e.target.value)}
-                  className="mt-1 w-full rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none focus:border-primary"
+                  className="mt-1 w-full rounded-input border border-border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-3 focus:ring-primary/15"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -152,7 +152,7 @@ export function RequestQuoteForm() {
                     id="company"
                     value={form.company}
                     onChange={(e) => update("company", e.target.value)}
-                    className="mt-1 w-full rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none focus:border-primary"
+                    className="mt-1 w-full rounded-input border border-border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-3 focus:ring-primary/15"
                   />
                 </div>
                 <div>
@@ -163,7 +163,7 @@ export function RequestQuoteForm() {
                     id="phone"
                     value={form.phone}
                     onChange={(e) => update("phone", e.target.value)}
-                    className="mt-1 w-full rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none focus:border-primary"
+                    className="mt-1 w-full rounded-input border border-border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-3 focus:ring-primary/15"
                   />
                 </div>
               </div>
@@ -188,7 +188,7 @@ export function RequestQuoteForm() {
                   id="product"
                   value={form.product}
                   onChange={(e) => update("product", e.target.value)}
-                  className="mt-1 w-full rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none focus:border-primary"
+                  className="mt-1 w-full rounded-input border border-border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-3 focus:ring-primary/15"
                 />
               </div>
               <div>
@@ -200,7 +200,7 @@ export function RequestQuoteForm() {
                   value={form.material}
                   onChange={(e) => update("material", e.target.value)}
                   placeholder="e.g. ABS, HDPE, PC"
-                  className="mt-1 w-full rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none focus:border-primary"
+                  className="mt-1 w-full rounded-input border border-border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-3 focus:ring-primary/15"
                 />
               </div>
               <div>
@@ -212,7 +212,7 @@ export function RequestQuoteForm() {
                   rows={4}
                   value={form.notes}
                   onChange={(e) => update("notes", e.target.value)}
-                  className="mt-1 w-full rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none focus:border-primary"
+                  className="mt-1 w-full rounded-input border border-border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-3 focus:ring-primary/15"
                 />
               </div>
             </motion.div>
@@ -231,7 +231,7 @@ export function RequestQuoteForm() {
 
               <label
                 htmlFor="file-upload"
-                className="flex cursor-pointer flex-col items-center gap-2 rounded-card border-[0.5px] border-dashed border-border bg-bg-alt px-6 py-10 text-center transition-colors duration-200 hover:border-primary"
+                className="flex cursor-pointer flex-col items-center gap-2 rounded-card border border-dashed border-border bg-bg-alt px-6 py-10 text-center transition-colors duration-200 hover:border-primary"
               >
                 <IconUpload size={28} stroke={1.5} className="text-primary" />
                 <span className="text-sm text-text">
@@ -257,7 +257,7 @@ export function RequestQuoteForm() {
                   {files.map((f) => (
                     <li
                       key={f.name}
-                      className="flex items-center gap-2 rounded-input border-[0.5px] border-border px-3 py-2 text-sm text-text-secondary"
+                      className="flex items-center gap-2 rounded-input border border-border px-3 py-2 text-sm text-text-secondary"
                     >
                       <IconFile size={16} stroke={1.75} />
                       {f.name}
@@ -276,7 +276,7 @@ export function RequestQuoteForm() {
                     value={form.quantity}
                     onChange={(e) => update("quantity", e.target.value)}
                     placeholder="e.g. 5,000 units"
-                    className="mt-1 w-full rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none focus:border-primary"
+                    className="mt-1 w-full rounded-input border border-border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-3 focus:ring-primary/15"
                   />
                 </div>
                 <div>
@@ -288,7 +288,7 @@ export function RequestQuoteForm() {
                     value={form.timeline}
                     onChange={(e) => update("timeline", e.target.value)}
                     placeholder="e.g. 6 weeks"
-                    className="mt-1 w-full rounded-input border-[0.5px] border-border px-3 py-2 text-sm outline-none focus:border-primary"
+                    className="mt-1 w-full rounded-input border border-border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-primary focus:ring-3 focus:ring-primary/15"
                   />
                 </div>
               </div>
@@ -305,7 +305,7 @@ export function RequestQuoteForm() {
               className="space-y-4"
             >
               <h2 className="text-text">Review Your Request</h2>
-              <dl className="divide-y-[0.5px] divide-border text-sm">
+              <dl className="divide-y divide-border text-sm">
                 {[
                   ["Name", form.name],
                   ["Email", form.email],

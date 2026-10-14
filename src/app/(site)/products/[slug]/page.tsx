@@ -31,10 +31,10 @@ export default async function ProductDetailPage({
 
   return (
     <>
-      <section className="border-b-[0.5px] border-border py-14">
+      <section className="border-b border-border bg-bg-alt py-14 md:py-20">
         <Container className="grid gap-10 md:grid-cols-2">
           <Reveal>
-            <div className="relative flex h-72 items-center justify-center overflow-hidden rounded-card border-[0.5px] border-border bg-bg-alt text-text-secondary md:h-96">
+            <div className="relative flex h-72 items-center justify-center overflow-hidden rounded-card border border-border bg-white text-primary/40 shadow-sm md:h-112">
               {product.imageUrl ? (
                 <Image
                   src={product.imageUrl}
@@ -52,19 +52,20 @@ export default async function ProductDetailPage({
 
           <Reveal delay={0.15}>
             <div>
-              <p className="text-sm font-medium uppercase tracking-wide text-accent">
-                {product.category}
-              </p>
-              <h1 className="mt-2 text-text">{product.name}</h1>
-              <p className="mt-4 text-text-secondary">{product.description}</p>
+              <p className="eyebrow">{product.category}</p>
+              <h1 className="mt-4 text-text">{product.name}</h1>
+              <p className="mt-5 text-lg text-text-secondary">{product.description}</p>
 
-              <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t-[0.5px] border-border pt-6">
-                {specs.map(([label, value]) => (
-                  <div key={label}>
-                    <dt className="text-xs uppercase tracking-wide text-text-secondary">
+              <dl className="mt-8 grid grid-cols-2 overflow-hidden rounded-card border border-border bg-white">
+                {specs.map(([label, value], i) => (
+                  <div
+                    key={label}
+                    className={`border-border px-5 py-4 ${i % 2 === 0 ? "border-r" : ""} ${i < specs.length - 1 ? "border-b" : ""} ${i === specs.length - 1 && i % 2 === 0 ? "col-span-2 border-r-0" : ""}`}
+                  >
+                    <dt className="text-xs font-semibold tracking-wide text-text-secondary uppercase">
                       {label}
                     </dt>
-                    <dd className="mt-1 text-sm text-text">{value}</dd>
+                    <dd className="mt-1 font-medium text-text">{value || "—"}</dd>
                   </div>
                 ))}
               </dl>

@@ -21,7 +21,7 @@ export default async function AdminTestimonialsPage() {
       <Card className="mt-6 overflow-x-auto p-0 max-sm:p-0!">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b-[0.5px] border-border text-left text-xs uppercase tracking-wide text-text-secondary">
+            <tr className="border-b border-border text-left text-xs uppercase tracking-wide text-text-secondary">
               <th className="px-4 py-3 sm:px-6 font-medium">Name</th>
               <th className="hidden sm:table-cell px-4 py-3 sm:px-6 font-medium">Company</th>
               <th className="px-4 py-3 sm:px-6 font-medium">Status</th>
@@ -30,7 +30,7 @@ export default async function AdminTestimonialsPage() {
           </thead>
           <tbody>
             {testimonials.map((t) => (
-              <tr key={t.id} className="border-b-[0.5px] border-border last:border-0">
+              <tr key={t.id} className="border-b border-border last:border-0">
                 <td className="px-4 py-3 sm:px-6 text-text">{t.name}</td>
                 <td className="hidden sm:table-cell px-4 py-3 sm:px-6 text-text-secondary">{t.company}</td>
                 <td className="px-4 py-3 sm:px-6">

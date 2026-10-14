@@ -13,7 +13,7 @@ export default function RequestQuotePage() {
         title="Request a Quote"
         description="Tell us about your part and we'll get back to you with pricing and lead time — usually within two business days."
       />
-      <section className="py-14">
+      <section className="py-14 md:py-20">
         <Container>
           <Suspense fallback={null}>
             <RequestQuoteForm />

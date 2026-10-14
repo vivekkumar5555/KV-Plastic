@@ -55,12 +55,12 @@ export function AnimatedStat({
   return (
     <div ref={containerRef} className="text-center">
       <div
-        className={`font-display text-3xl font-medium ${numberClassName}`}
+        className={`font-display text-4xl font-extrabold tracking-tight md:text-5xl ${numberClassName}`}
         ref={numberRef}
       >
         {value}
       </div>
-      <div className="mt-1 text-sm text-text-secondary">{label}</div>
+      <div className="mt-2 text-sm font-medium text-text-secondary">{label}</div>
     </div>
   );
 }

@@ -26,7 +26,7 @@ export default async function CaseStudyPage({
   ];
 
   return (
-    <section className="py-14">
+    <section className="py-14 md:py-20">
       <Container className="max-w-3xl">
         <Reveal>
           <Badge tone="primary">{caseStudy.industry}</Badge>
@@ -35,7 +35,7 @@ export default async function CaseStudyPage({
 
         {caseStudy.imageUrl && (
           <Reveal delay={0.1}>
-            <div className="relative mt-8 h-72 w-full overflow-hidden rounded-card border-[0.5px] border-border md:h-96">
+            <div className="relative mt-8 h-72 w-full overflow-hidden rounded-card border border-border md:h-96">
               <Image
                 src={caseStudy.imageUrl}
                 alt={caseStudy.title}

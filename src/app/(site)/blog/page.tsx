@@ -19,15 +19,15 @@ export default async function BlogPage() {
         description="Notes on materials, tolerances, and getting the most out of the RFQ process."
       />
 
-      <section className="py-14">
+      <section className="py-14 md:py-20">
         <Container>
           <StaggerGrid className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {blogPosts.map((post) => (
               <StaggerItem key={post.slug} className="h-full">
                 <Link href={`/blog/${post.slug}`} className="block h-full">
-                  <Card className="flex h-full flex-col transition-colors duration-200 hover:border-primary">
-                    <Badge tone="primary">{post.category}</Badge>
-                    <h3 className="mt-4 text-text">{post.title}</h3>
+                  <Card className="group flex h-full flex-col p-7 transition-[border-color,box-shadow] duration-300 hover:border-primary hover:shadow-xl hover:shadow-primary/5">
+                    <Badge tone="primary" className="self-start">{post.category}</Badge>
+                    <h3 className="mt-4 text-text transition-colors duration-200 group-hover:text-primary">{post.title}</h3>
                     <p className="mt-2 text-sm text-text-secondary">
                       {post.excerpt}
                     </p>
