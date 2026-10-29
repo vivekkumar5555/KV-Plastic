@@ -18,48 +18,44 @@ export function ProductForm({
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
             <label className="text-sm text-text-secondary" htmlFor="name">
-              Name *
+              Name
             </label>
             <input
               id="name"
               name="name"
-              required
               defaultValue={product?.name}
               className={inputClass}
             />
           </div>
           <div>
             <label className="text-sm text-text-secondary" htmlFor="slug">
-              Slug *
+              Slug
             </label>
             <input
               id="slug"
               name="slug"
-              required
               defaultValue={product?.slug}
               className={inputClass}
             />
           </div>
           <div>
             <label className="text-sm text-text-secondary" htmlFor="category">
-              Category *
+              Category
             </label>
             <input
               id="category"
               name="category"
-              required
               defaultValue={product?.category}
               className={inputClass}
             />
           </div>
           <div>
             <label className="text-sm text-text-secondary" htmlFor="material">
-              Material *
+              Material
             </label>
             <input
               id="material"
               name="material"
-              required
               defaultValue={product?.material}
               className={inputClass}
             />
@@ -68,12 +64,11 @@ export function ProductForm({
 
         <div>
           <label className="text-sm text-text-secondary" htmlFor="shortSpec">
-            Short Spec *
+            Short Spec
           </label>
           <input
             id="shortSpec"
             name="shortSpec"
-            required
             defaultValue={product?.shortSpec}
             className={inputClass}
           />
@@ -81,12 +76,11 @@ export function ProductForm({
 
         <div>
           <label className="text-sm text-text-secondary" htmlFor="description">
-            Description *
+            Description
           </label>
           <textarea
             id="description"
             name="description"
-            required
             rows={4}
             defaultValue={product?.description}
             className={inputClass}
@@ -96,48 +90,44 @@ export function ProductForm({
         <div className="grid gap-4 sm:grid-cols-4">
           <div>
             <label className="text-sm text-text-secondary" htmlFor="tolerance">
-              Tolerance *
+              Tolerance
             </label>
             <input
               id="tolerance"
               name="tolerance"
-              required
               defaultValue={product?.tolerance}
               className={inputClass}
             />
           </div>
           <div>
             <label className="text-sm text-text-secondary" htmlFor="weight">
-              Weight *
+              Weight
             </label>
             <input
               id="weight"
               name="weight"
-              required
               defaultValue={product?.weight}
               className={inputClass}
             />
           </div>
           <div>
             <label className="text-sm text-text-secondary" htmlFor="dimensions">
-              Dimensions *
+              Dimensions
             </label>
             <input
               id="dimensions"
               name="dimensions"
-              required
               defaultValue={product?.dimensions}
               className={inputClass}
             />
           </div>
           <div>
             <label className="text-sm text-text-secondary" htmlFor="moq">
-              MOQ *
+              MOQ
             </label>
             <input
               id="moq"
               name="moq"
-              required
               defaultValue={product?.moq}
               className={inputClass}
             />

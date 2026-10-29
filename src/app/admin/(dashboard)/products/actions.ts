@@ -15,9 +15,33 @@ function str(formData: FormData, key: string) {
   return (formData.get(key) as string | null)?.trim() ?? "";
 }
 
+function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 80);
+}
+
+// Slug is unique in the DB and used in the product URL, so an empty one is generated.
+async function resolveSlug(formData: FormData, excludeId?: string) {
+  const entered = str(formData, "slug");
+  if (entered) return entered;
+
+  const base = slugify(str(formData, "name")) || "product";
+  for (let n = 1; ; n++) {
+    const candidate = n === 1 ? base : `${base}-${n}`;
+    const clash = await prisma.product.findFirst({
+      where: { slug: candidate, ...(excludeId ? { id: { not: excludeId } } : {}) },
+      select: { id: true },
+    });
+    if (!clash) return candidate;
+  }
+}
+
 function productFields(formData: FormData) {
   return {
-    slug: str(formData, "slug"),
     name: str(formData, "name"),
     category: str(formData, "category"),
     material: str(formData, "material"),
@@ -40,7 +64,7 @@ export async function createProduct(formData: FormData) {
       : undefined;
 
   const product = await prisma.product.create({
-    data: { ...productFields(formData), imageUrl },
+    data: { ...productFields(formData), slug: await resolveSlug(formData), imageUrl },
   });
 
   await logActivity(await getActor(), "created", "product", product.id);
@@ -60,7 +84,11 @@ export async function updateProduct(id: string, formData: FormData) {
   });
   await prisma.product.update({
     where: { id },
-    data: { ...productFields(formData), ...(imageUrl ? { imageUrl } : {}) },
+    data: {
+      ...productFields(formData),
+      slug: await resolveSlug(formData, id),
+      ...(imageUrl ? { imageUrl } : {}),
+    },
   });
   if (imageUrl) await deleteUploadByUrl(previous?.imageUrl);
 
